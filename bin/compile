@@ -74,3 +74,4 @@ uv cache clean 2>&1 | indent
 rm -rf "$(uv python dir)" 2>&1 | indent
 rm -rf "$(uv tool dir)" 2>&1 | indent
 rm -f ~/.cargo/bin/uv ~/.cargo/bin/uvx 2>&1 | indent
+rm -rf .venv 2>&1 | indent
