@@ -70,8 +70,12 @@ fi
 
 log "Uninstalling uv-managed Python versions"
 uv python uninstall --all 2>&1 | indent || echo "Failed to uninstall uv-managed Python versions..."
-uv cache clean 2>&1 | indent
 rm -rf "$(uv python dir)" 2>&1 | indent
+log "Cleaning up uv-managed Python versions"
+uv cache clean 2>&1 | indent
+log "Cleaning up uv-managed tool versions"
 rm -rf "$(uv tool dir)" 2>&1 | indent
+log "Cleaning up uv and uvx binaries"
 rm -f ~/.cargo/bin/uv ~/.cargo/bin/uvx 2>&1 | indent
+log "Cleaning up .venv"
 rm -rf .venv 2>&1 | indent
