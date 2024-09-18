@@ -71,6 +71,6 @@ fi
 log "Uninstalling uv-managed Python versions"
 uv python uninstall --all 2>&1 | indent || echo "Failed to uninstall uv-managed Python versions..."
 uv cache clean 2>&1 | indent
-rm -r "$(uv python dir)" 2>&1 | indent
-rm -r "$(uv tool dir)" 2>&1 | indent
-rm ~/.cargo/bin/uv ~/.cargo/bin/uvx 2>&1 | indent
+rm -rf "$(uv python dir)" 2>&1 | indent
+rm -rf "$(uv tool dir)" 2>&1 | indent
+rm -f ~/.cargo/bin/uv ~/.cargo/bin/uvx 2>&1 | indent
