@@ -33,7 +33,7 @@ for env_file in "$ENV_DIR"/UV_* ; do
 done
 
 if [ -z "${UV_VERSION:-}" ] ; then
-    export UV_VERSION=0.4.29
+    export UV_VERSION=0.5.5
     log "No uv version specified in UV_VERSION config var. Defaulting to $UV_VERSION."
 else
     log "Using uv version from UV_VERSION config var: $UV_VERSION"
@@ -43,7 +43,7 @@ log "Install uv"
 curl -LsSf "https://astral.sh/uv/$UV_VERSION/install.sh" | sh 2>&1 | indent
 
 # Make the uv commands available
-source "$HOME/.cargo/env"
+source "$HOME/.local/bin/env"
 
 # Install a Python version with uv so we get more
 # recent releases by default
