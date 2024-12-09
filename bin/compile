@@ -56,6 +56,11 @@ if [ -z "${UV_EMIT_PROJECT:-}" ]; then
     EXPORT_ARGS+=("--no-emit-project")
 fi
 
+export UV_NO_HASHES=1
+if [ -n "${UV_NO_HASHES:-}" ]; then
+    EXPORT_ARGS+=("--no-hashes")
+fi
+
 log "Export requirements.txt from uv"
 uv export --output-file requirements.txt "${EXPORT_ARGS[@]}" 2>&1 | indent
 
