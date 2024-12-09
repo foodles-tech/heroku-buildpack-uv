@@ -50,11 +50,17 @@ source "$HOME/.local/bin/env"
 log "Install uv Python version"
 uv python install 2>&1 | indent
 
+export UV_EMIT_PROJECT=1
+EXPORT_ARGS=("--no-dev" "--frozen")
+if [ -z "${UV_EMIT_PROJECT:-}" ]; then
+    EXPORT_ARGS+=("--no-emit-project")
+fi
+
 log "Export requirements.txt from uv"
-uv export --output-file requirements.txt --no-dev --no-emit-project --frozen 2>&1 | indent
+uv export --output-file requirements.txt "${EXPORT_ARGS[@]}" 2>&1 | indent
 
 log "Export requirements-test.txt from uv (for Heroku CI)"
-uv export --output-file requirements-test.txt --no-emit-project --frozen 2>&1 | indent
+uv export --output-file requirements-test.txt "${EXPORT_ARGS[@]}" 2>&1 | indent
 
 RUNTIME_FILE="runtime.txt"
 
