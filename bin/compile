@@ -50,14 +50,12 @@ source "$HOME/.local/bin/env"
 log "Install uv Python version"
 uv python install 2>&1 | indent
 
-export UV_EMIT_PROJECT=1
 EXPORT_ARGS=("--no-dev" "--frozen")
-if [ -z "${UV_EMIT_PROJECT:-}" ]; then
+if [ "${UV_EMIT_PROJECT:-1}" == "0" ]; then
     EXPORT_ARGS+=("--no-emit-project")
 fi
 
-export UV_NO_HASHES=1
-if [ -n "${UV_NO_HASHES:-}" ]; then
+if [ "${UV_NO_HASHES:-1}" == "1" ]; then
     EXPORT_ARGS+=("--no-hashes")
 fi
 
